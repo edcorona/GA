@@ -41,9 +41,7 @@ class DNA {
           score++;
         }
      }
-     
-     
-     fitness = (float)score / (float)target.length();
+     fitness = pow(2,score);
   }
   
   // Crossover

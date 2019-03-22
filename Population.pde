@@ -29,7 +29,7 @@ class Population {
     finished = false;
     generations = 0;
     
-    perfectScore = 1;
+    perfectScore = int(pow(2,target.length()));
   }
 
   // Fill our fitness array with a value for every member of the population
@@ -67,11 +67,16 @@ class Population {
   // Create a new generation
   void generate() {
     // Refill the population with children from the mating pool
+    
     for (int i = 0; i < population.length; i++) {
-      int a = int(random(matingPool.size()));
-      int b = int(random(matingPool.size()));
-      DNA partnerA = matingPool.get(a);
-      DNA partnerB = matingPool.get(b);
+      //int a = int(random(matingPool.size()));
+      int a2=int(matingPool.size());
+      int a3=a2-1;
+      int a1=int(matingPool<a3>);
+      int b1=int(matingPool.size()-1);
+      //int b = int(random(matingPool.size()));
+      DNA partnerA = matingPool.get(a1);
+      DNA partnerB = matingPool.get(b1);
       DNA child = partnerA.crossover(partnerB);
       child.mutate(mutationRate);
       population[i] = child;
@@ -82,7 +87,7 @@ class Population {
 
   // Compute the current "most fit" member of the population
   String getBest() {
-    float worldrecord = 0.0;
+    float worldrecord = 0.0f;
     int index = 0;
     for (int i = 0; i < population.length; i++) {
       if (population[i].fitness > worldrecord) {
@@ -90,7 +95,7 @@ class Population {
         worldrecord = population[i].fitness;
       }
     }
-    
+
     if (worldrecord == perfectScore ) finished = true;
     return population[index].getPhrase();
   }
